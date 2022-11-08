@@ -1,20 +1,63 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,Button } from 'react-native';
 
-export default function App() {
+const DATA = [
+  {
+    id: '1',
+    title: 'boton 1',
+  },
+
+
+  // Crear mas datos 
+
+
+
+];
+const BotonItem = ({ title }) => (
+
+  <Button title={title} onPress={click} >
+  </Button>
+);
+
+const click = () => {  
+
+   //crear accion para el boton
+}
+
+
+const App = () => {
+  const renderItem = ({ item }) => (
+    <BotonItem title={item.title} />
+  );
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        
+      />
+
+    </SafeAreaView>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
   },
 });
+
+export default App;
